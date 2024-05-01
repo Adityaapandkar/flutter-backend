@@ -87,10 +87,11 @@ app.post("/users/login", async (req, res) => {
 // Shoe routes
 app.post("/shoes", async (req, res) => {
   try {
-    const { name, price } = req.body;
+    const { shoeId, name, price } = req.body;
 
     // Create a new shoe document
     const shoe = new Shoe({
+      shoeId,
       name,
       price,
     });
