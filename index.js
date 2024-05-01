@@ -85,6 +85,25 @@ app.post("/users/login", async (req, res) => {
 });
 
 // Shoe routes
+app.post("/shoes", async (req, res) => {
+  try {
+    const { name, price } = req.body;
+
+    // Create a new shoe document
+    const shoe = new Shoe({
+      name,
+      price,
+    });
+
+    // Save the new shoe to the database
+    await shoe.save();
+
+    res.status(201).json({ message: "Shoe added successfully" });
+  } catch (err) {
+    res.status(500).json({ error: "Error adding shoe" });
+  }
+});
+
 app.get("/shoes", async (req, res) => {
   try {
     const shoes = await Shoe.find();
